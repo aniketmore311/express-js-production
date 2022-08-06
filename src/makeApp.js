@@ -6,9 +6,9 @@
 const express = require('express');
 const morgan = require('morgan');
 const fs = require("fs")
+const config = require('config')
 const notFoundHandler = require("./lib/middleware/notFoundHandler")
 const errorHandler = require("./lib/middleware/errorHandler");
-const configService = require('./config/configService');
 const logger = require('./setup/logger');
 const path = require('path');
 
@@ -21,8 +21,8 @@ function makeApp({
 }) {
     const app = express()
 
-    const NODE_ENV = configService.get("NODE_ENV")
-    const LOG_DIR = configService.get("LOG_DIR")
+    const NODE_ENV = config.get('env.NODE_ENV')
+    const LOG_DIR = config.get('application.logDir')
 
     //in development log using winston
     if (NODE_ENV == "development") {

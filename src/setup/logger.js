@@ -1,10 +1,10 @@
 //@ts-check
 const winston = require('winston')
 const path = require('path')
-const configService = require('../config/configService')
+const config = require('config')
 
-const NODE_ENV = configService.get("NODE_ENV")
-const LOG_DIR = configService.get("LOG_DIR")
+const NODE_ENV = config.get('env.NODE_ENV')
+const LOG_DIR = config.get('application.logDir')
 
 const logger = winston.createLogger({
     level: NODE_ENV == 'development' ? "debug" : "info",

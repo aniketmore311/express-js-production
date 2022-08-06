@@ -8,26 +8,6 @@
  */
 
 /**
- * @typedef {Object<string,string|undefined>} Config
- */
-
-/**
- * @callback ConfigFactory
- * @returns {Config} config
- */
-
-/**
- * @callback getConfigFn 
- * @param {string} key
- * @returns {string} value
- */
-
-/**
- * @typedef {Object} configService
- * @property {getConfigFn} get
- */
-
-/**
  * @callback ControllerRegisterFn
  * @param {Application} app
  * @returns {void}
