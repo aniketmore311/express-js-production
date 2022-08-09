@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "nodemon src/server.js",
-    "dev": "npm run start:dev"
+    "start:node": "node src/server.js",
+    "start:prod": "pm2-runtime src/server.js -i 4",
+    "dev": "npm run start:dev",
+    "start": "npm run start:prod",
+    "node": "npm run start:node"
   },
   "keywords": [],
   "author": "",
@@ -20,12 +24,12 @@
     "http-errors": "^2.0.0",
     "make-promises-safe": "^5.1.0",
     "morgan": "^1.10.0",
+    "pm2": "^5.2.0",
     "winston": "^3.8.0"
   },
   "devDependencies": {
     "jest": "^28.1.1",
     "nodemon": "^2.0.18",
-    "pm2": "^5.2.0",
     "supertest": "^6.2.3"
   }
 }
