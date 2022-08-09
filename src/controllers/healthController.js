@@ -4,6 +4,7 @@
  * @typedef {import('../types').RequestHandler} RequestHandler
  */
 const express = require('express')
+const createHttpError = require('http-errors')
 
 const healthController = {
 
@@ -17,6 +18,7 @@ const healthController = {
 
     /**@type {RequestHandler} */
     healthHandler(req, res, next) {
+        throw new Error("secret error")
         const resp = {
             status: "ok"
         }

@@ -8,13 +8,11 @@ const http = require('http')
 
 const makeApp = require("./makeApp");
 const healthController = require("./controllers/healthController");
-const errorController = require("./controllers/errorController");
 const logger = require('./setup/logger')
 
 async function main() {
-
     const app = makeApp({
-        controllers: [healthController, errorController]
+        controllers: [healthController]
     })
     const server = http.createServer(app)
     const PORT = config.get('application.port')

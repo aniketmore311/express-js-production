@@ -11,29 +11,32 @@ const logger = winston.createLogger({
     format: winston.format.json(),
 })
 
-logger.add(new winston.transports.File({
-    filename: path.join(LOG_DIR, "general.log"),
-    format: winston.format.combine(
-        winston.format.timestamp(),
-        winston.format.json(),
-    ),
-    level: 'info',
+if (NODE_ENV == "production") {
+    logger.add(new winston.transports.File({
+        filename: path.join(LOG_DIR, "general.log"),
+        format: winston.format.combine(
+            winston.format.timestamp(),
+            winston.format.json(),
+        ),
+        level: 'info',
 
-}))
+    }))
 
-logger.add(new winston.transports.File({
-    filename: path.join(LOG_DIR, "error.log"),
-    format: winston.format.combine(
-        winston.format.timestamp(),
-        winston.format.json(),
-    ),
-    level: 'error',
-}))
+    logger.add(new winston.transports.File({
+        filename: path.join(LOG_DIR, "error.log"),
+        format: winston.format.combine(
+            winston.format.timestamp(),
+            winston.format.json(),
+        ),
+        level: 'error',
+    }))
+}
 
-if (NODE_ENV == "development") {
+if (NODE_ENV == "development" || NODE_ENV == "production") {
     logger.add(new winston.transports.Console({
         format: winston.format.cli()
     }))
 }
+
 
 module.exports = logger
