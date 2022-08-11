@@ -93,6 +93,7 @@ function errorLogger() {
  * @returns {ErrorRequestHandler}
  */
 function errorHandler() {
+  //eslint-disable-next-line no-unused-vars
   return function (err, req, res, next) {
     let status = 500
     let message = 'Something went wrong'

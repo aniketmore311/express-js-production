@@ -15,6 +15,7 @@ const healthController = {
   },
 
   /**@type {RequestHandler} */
+  //eslint-disable-next-line no-unused-vars
   healthHandler(req, res, next) {
     const resp = {
       status: 'ok',
