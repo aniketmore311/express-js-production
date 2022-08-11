@@ -1,20 +1,27 @@
 //@ts-check
-const makeApp = require("../../../src/makeApp")
 const catchAsync = require("../../../src/utils/catchAsync")
+const express = require('express')
 const request = require('supertest')
 
 describe('catchAsync', () => {
     it('should forward error when thrown inside async handler', async () => {
-        /**@type {import("../../../src/types").Controller} */
-        let mockController = {
-            register(app) {
-                app.get('/error', catchAsync(async (req, res, next) => {
-                    throw new Error('test error')
-                }))
-            }
-        }
-        let app = makeApp({ controllers: [mockController] })
-        let resp = await request(app).get('/error');
-        expect(resp.statusCode).toBeGreaterThanOrEqual(400)
+        //setup
+        let app = express()
+        app.get('/test', catchAsync(async () => {
+            throw new Error('test error')
+        }))
+        app.use((err, req, res, next) => {
+            return res.status(500).json({
+                message: err.message
+            })
+        })
+        //action
+        let resp = await request(app).get('/test')
+        //assert
+        expect(resp.status).toEqual(500)
+        expect(resp.body).toEqual({
+            message: 'test error'
+        })
+
     })
 })

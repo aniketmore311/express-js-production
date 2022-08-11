@@ -10,10 +10,11 @@ const morgan = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
 const fs = require('fs')
-const createError = require('http-errors')
 const config = require('config')
 const logger = require('./setup/logger')
 const path = require('path')
+const notFoundHandler = require('./lib/middleware/notFoundHandler')
+const errorHandler = require('./lib/middleware/errorHandler')
 
 //constants
 const NODE_ENV = config.get('env.NODE_ENV')
@@ -62,15 +63,6 @@ function makeApp({ controllers }) {
   return app
 }
 
-/**
- * @returns {RequestHandler}
- */
-function notFoundHandler() {
-  return function (req, res, next) {
-    const err = new createError.NotFound('resource not found')
-    next(err)
-  }
-}
 
 /**
  * @returns {ErrorRequestHandler}
@@ -86,27 +78,6 @@ function errorLogger() {
     })
     logger.debug(err.stack)
     next(err)
-  }
-}
-
-/**
- * @returns {ErrorRequestHandler}
- */
-function errorHandler() {
-  return function (err, req, res, next) {
-    let status = 500
-    let message = 'Something went wrong'
-
-    if (err.statusCode) {
-      status = err.statusCode
-      message = err.message
-    }
-    const resp = {
-      status,
-      message,
-    }
-    res.status(status).json(resp)
-    return
   }
 }
 
