@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon src/server.js",
-    "start:node": "node src/server.js",
-    "start:prod": "pm2-runtime src/server.js -i 4",
+    "start": "npm run start:node",
     "dev": "npm run start:dev",
-    "start": "npm run start:prod",
-    "node": "npm run start:node",
+    "prod": "npm run start:prod",
+    "start:node": "node src/server.js",
+    "start:dev": "nodemon src/server.js",
+    "start:prod": "pm2-runtime src/server.js -i 4",
     "test": "jest",
     "format": "prettier --write .",
     "lint": "eslint ."
