@@ -1,7 +1,6 @@
+//@ts-check
 function setup() {
   require('./logger')
 }
 
-module.exports = {
-  setup,
-}
+module.exports = setup;

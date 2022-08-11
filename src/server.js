@@ -1,7 +1,8 @@
 //@ts-check
 require('make-promises-safe')
 require('dotenv').config()
-require('./setup/index').setup()
+//setup
+require('./setup/index')()
 
 const config = require('config')
 const http = require('http')

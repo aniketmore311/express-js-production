@@ -14,6 +14,14 @@
  */
 
 /**
+ * @callback AsyncHandler
+ * @param {Request} req
+ * @param {Response} res
+ * @param {NextFunction} next
+ * @returns {Promise<any>}
+ */
+
+/**
  * @typedef {Object} Controller
  * @property {ControllerRegisterFn} register - used to register controller with and app
  */
