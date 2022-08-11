@@ -1,7 +1,6 @@
 //@ts-check
 const errorHandler = require("../../../../src/lib/middleware/errorHandler")
 const express = require('express')
-const { body } = require('express-validator')
 const request = require('supertest')
 const createHttpError = require("http-errors")
 

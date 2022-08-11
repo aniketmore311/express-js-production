@@ -1,9 +1,7 @@
 //@ts-check
 const notFoundHandler = require("../../../../src/lib/middleware/notFoundHandler")
 const express = require('express')
-const { body } = require('express-validator')
 const request = require('supertest')
-const createHttpError = require("http-errors")
 
 describe('catchAsync', () => {
     //setup
