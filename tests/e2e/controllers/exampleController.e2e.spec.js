@@ -4,31 +4,27 @@ const makeApp = require('../../../src/makeApp')
 const exampleController = require('../../../src/controllers/exampleController')
 
 describe('exampleController', () => {
-    let app;
+  let app
 
-    beforeAll(() => {
-        app = makeApp({
-            controllers: [
-                exampleController
-            ]
-        })
+  beforeAll(() => {
+    app = makeApp({
+      controllers: [exampleController],
+    })
+  })
+
+  describe('login', () => {
+    it('should return error when email is missig', async () => {
+      let resp = await request(app).post('/example/login').send({
+        password: 'pass',
+      })
+      expect(resp.statusCode).toEqual(400)
     })
 
-    describe('login', () => {
-
-        it('should return error when email is missig', async () => {
-            let resp = await request(app).post('/example/login').send({
-                password: "pass"
-            })
-            expect(resp.statusCode).toEqual(400)
-        })
-
-        it('should return error when password is missig', async () => {
-            let resp = await request(app).post('/example/login').send({
-                email: "email"
-            })
-            expect(resp.statusCode).toEqual(400)
-        })
-
+    it('should return error when password is missig', async () => {
+      let resp = await request(app).post('/example/login').send({
+        email: 'email',
+      })
+      expect(resp.statusCode).toEqual(400)
     })
+  })
 })

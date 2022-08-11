@@ -1,7 +1,7 @@
 function setup() {
-    require('./logger')
+  require('./logger')
 }
 
 module.exports = {
-    setup
+  setup,
 }

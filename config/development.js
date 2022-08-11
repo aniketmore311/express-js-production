@@ -1,5 +1,5 @@
 module.exports = {
-    databse: {
-        URI: process.env.DB_URI
-    }
+  databse: {
+    URI: process.env.DB_URI,
+  },
 }
