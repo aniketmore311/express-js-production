@@ -1,5 +1,5 @@
 //@ts-check
-const catchAsync = require("../../../src/utils/catchAsync")
+const catchAsync = require("../../../../src/lib/utils/catchAsync")
 const express = require('express')
 const request = require('supertest')
 

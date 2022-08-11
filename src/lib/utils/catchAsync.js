@@ -1,7 +1,7 @@
 //@ts-check
 /**
- * @typedef {import('../types').RequestHandler} RequestHandler
- * @typedef {import('../types').AsyncHandler} AsyncHandler
+ * @typedef {import('../../types').RequestHandler} RequestHandler
+ * @typedef {import('../../types').AsyncHandler} AsyncHandler
  */
 /**
  * @param {AsyncHandler} fn 
