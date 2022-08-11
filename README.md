@@ -21,8 +21,8 @@
 
 - run `npx degit aniketmore311/express-js-production <your project name>`
 - run `cd <your project name>`
-- run `npm install <your project name>`
+- run `npm install`
 - run `cp .env.example .env` and fill values of env variables in `.env` file
-- run `npm start <your project name>` to start in production or
+- run `npm start` to start in production or
 - run `npm run dev` to run in development or
 - run `npm run node` to start a single node process
