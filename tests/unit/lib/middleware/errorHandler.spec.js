@@ -4,7 +4,7 @@ const express = require('express')
 const request = require('supertest')
 const createHttpError = require("http-errors")
 
-describe('catchAsync', () => {
+describe('errorHandler', () => {
     //setup
     let app;
     beforeAll(() => {

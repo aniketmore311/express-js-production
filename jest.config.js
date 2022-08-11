@@ -5,7 +5,8 @@ const config = {
   collectCoverage: true,
   collectCoverageFrom: [
     "src/**/*.js"
-  ]
+  ],
+  verbose: true
 }
 
 module.exports = config

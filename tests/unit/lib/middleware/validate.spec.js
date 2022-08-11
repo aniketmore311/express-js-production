@@ -4,7 +4,7 @@ const express = require('express')
 const { body } = require('express-validator')
 const request = require('supertest')
 
-describe('catchAsync', () => {
+describe('validate', () => {
     it('should forward proper error when validation fails', async () => {
         //setup
         let app = express()

@@ -3,7 +3,7 @@ const notFoundHandler = require("../../../../src/lib/middleware/notFoundHandler"
 const express = require('express')
 const request = require('supertest')
 
-describe('catchAsync', () => {
+describe('notFoundHandler', () => {
     //setup
     let app;
     beforeAll(() => {
