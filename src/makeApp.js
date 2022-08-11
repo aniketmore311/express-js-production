@@ -7,6 +7,8 @@
  */
 const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors')
+const helmet = require('helmet')
 const fs = require("fs")
 const createError = require('http-errors')
 const config = require('config')
@@ -26,9 +28,14 @@ function makeApp({
 }) {
     const app = express()
 
+    app.use(cors())
+    //@ts-ignore
+    app.use(helmet())
+    app.use(express.json())
+    app.use(express.urlencoded({ extended: true }))
 
     //log to console
-    app.use(morgan("combined", {
+    app.use(morgan("common", {
         stream: {
             write: (message) => {
                 logger.info(message.trim())
@@ -37,7 +44,7 @@ function makeApp({
     }))
     // in production also log to a file
     if (NODE_ENV == "production") {
-        app.use(morgan('combined', {
+        app.use(morgan('common', {
             stream: fs.createWriteStream(path.join(LOG_DIR, "access.log"))
         }))
     }
@@ -75,7 +82,6 @@ function errorLogger() {
                 statusCode: err.statusCode || 500
             }
         })
-        // print stack trace to console in development
         logger.debug(err.stack)
         next(err)
     }

@@ -9,6 +9,7 @@ const LOG_DIR = config.get('application.logDir')
 const logger = winston.createLogger({
     level: NODE_ENV == 'development' ? "debug" : "info",
     format: winston.format.json(),
+    silent: NODE_ENV == 'test' ? true : false
 })
 
 if (NODE_ENV == "production") {

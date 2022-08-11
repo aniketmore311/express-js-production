@@ -9,10 +9,19 @@
 
 ## This starter includes
 
-- `dotenv` along with a custom config factory and config service for managing configuration
+- `dotenv` and `config` for config management
 - `helmet`, `cors` for security
-- `make-promises-safe`, `http-errors`, custom error handling and logging middleware for error handling
+- `make-promises-safe`, `http-errors` and error handling and logging middleware for error handling
 - `express-validator` and a custom validation middleware for validation
-- `winston` for logging
+- `winston`and `morgan` for logging
 - `jest` and `supertest` for testing
 - `pm2` as a production runtime
+
+## how to use this starter
+- run `npx degit aniketmore311/express-js-production <your project name>`
+- run `cd <your project name>`
+- run `npm install <your project name>`
+- run `cp .env.example .env` and fill values of env variables in `.env` file
+- run `npm start <your project name>` to start in production or
+- run `npm run dev` to run in development or
+- run `npm run node` to start a single node process
