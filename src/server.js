@@ -11,15 +11,18 @@ const exampleController = require('./controllers/exampleController')
 const logger = require('./setup/logger')
 
 async function main() {
+
+  const NODE_ENV = config.get('env.NODE_ENV');
+  const PORT = config.get('application.port')
+  
   const app = makeApp({
     controllers: [healthController, exampleController],
   })
   const server = http.createServer(app)
-  const PORT = config.get('application.port')
 
   server.listen(PORT, () => {
     logger.info(
-      `server(mode: ${process.env.NODE_ENV}) started on: http://localhost:${PORT}`
+      `server(mode: ${NODE_ENV}) started on: http://localhost:${PORT}`
     )
     logger.debug(`pid: ${process.pid}`)
   })
@@ -40,8 +43,6 @@ async function main() {
     process.exit(1)
   })
 }
-
-Promise.reject(new Error('random error'))
 
 main().catch((err) => {
   console.log(err)
