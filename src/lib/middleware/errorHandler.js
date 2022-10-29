@@ -1,4 +1,3 @@
-//@ts-check
 /**
  * @returns {import("../../types").ErrorRequestHandler}
  */

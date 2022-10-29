@@ -11,7 +11,7 @@
 
 - `dotenv` and `config` for config management
 - `helmet`, `cors` for security
-- `make-promises-safe`, `http-errors` and error handling and logging middleware for error handling
+- `http-errors` and error handling and logging middleware for error handling
 - `express-validator` and a custom validation middleware for validation
 - `winston`and `morgan` for logging
 - `jest` and `supertest` for testing

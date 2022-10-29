@@ -1,6 +1,5 @@
 const createHttpError = require("http-errors")
 
-//@ts-check
 /**
  * @returns {import("../../types").RequestHandler}
  */

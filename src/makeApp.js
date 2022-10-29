@@ -1,4 +1,3 @@
-//@ts-check
 /**
  * @typedef {import('./types').Controller} Controller
  * @typedef {import('./types').Application} Application
@@ -15,6 +14,7 @@ const logger = require('./setup/logger')
 const path = require('path')
 const notFoundHandler = require('./lib/middleware/notFoundHandler')
 const errorHandler = require('./lib/middleware/errorHandler')
+const errorLogger = require('./lib/middleware/errorLogger')
 
 //constants
 const NODE_ENV = config.get('env.NODE_ENV')
@@ -57,28 +57,11 @@ function makeApp({ controllers }) {
   })
 
   app.use(notFoundHandler())
-  app.use(errorLogger())
+  app.use(errorLogger({logger}))
   app.use(errorHandler())
 
   return app
 }
 
-
-/**
- * @returns {ErrorRequestHandler}
- */
-function errorLogger() {
-  return function (err, req, res, next) {
-    logger.error(err.message, {
-      error: {
-        message: err.message,
-        stack: err.stack,
-        statusCode: err.statusCode || 500,
-      },
-    })
-    logger.debug(err.stack)
-    next(err)
-  }
-}
 
 module.exports = makeApp

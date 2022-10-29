@@ -1,4 +1,3 @@
-//@ts-check
 /**
  * @typedef {import('../types').ControllerRegisterFn} ControllerRegisterFn
  * @typedef {import('../types').RequestHandler} RequestHandler

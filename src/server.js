@@ -1,5 +1,3 @@
-//@ts-check
-require('make-promises-safe')
 require('dotenv').config()
 //setup
 require('./setup/index')()
@@ -33,9 +31,17 @@ async function main() {
       process.exit(1)
     })
   }
+
   process.on('SIGINT', onClose)
   process.on('SIGTERM', onClose)
+
+  process.on("unhandledRejection", function (err) {
+    console.error(err)
+    process.exit(1)
+  })
 }
+
+Promise.reject(new Error('random error'))
 
 main().catch((err) => {
   console.log(err)

@@ -1,4 +1,3 @@
-//@ts-check
 const winston = require('winston')
 const path = require('path')
 const config = require('config')

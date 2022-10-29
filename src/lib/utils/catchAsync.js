@@ -1,4 +1,3 @@
-//@ts-check
 /**
  * @typedef {import('../../types').RequestHandler} RequestHandler
  * @typedef {import('../../types').AsyncHandler} AsyncHandler
