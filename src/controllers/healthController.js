@@ -1,26 +1,26 @@
 /**
  * @typedef {import('../types').ControllerRegisterFn} ControllerRegisterFn
- * @typedef {import('../types').RequestHandler} RequestHandler
+ * @typedef {import('express').RequestHandler} RequestHandler
  */
 const express = require('express')
 
-const healthController = {
-  /**@type {ControllerRegisterFn} */
-  register(app) {
-    const router = express.Router()
-    router.get('/', this.healthHandler.bind(this))
-    router.get('/health', this.healthHandler.bind(this))
-    app.use('/', router)
-  },
-
-  /**@type {RequestHandler} */
-  healthHandler(req, res, next) {
-    const resp = {
-      status: 'ok',
-    }
-    res.json(resp)
-    return
-  },
+/**@type {ControllerRegisterFn} */
+function registerHealthController(app) {
+  const router = express.Router()
+  router.get('/', healthHandler)
+  router.get('/health', healthHandler)
+  app.use('/', router)
 }
 
-module.exports = healthController
+/**@type {RequestHandler} */
+function healthHandler(req, res, next) {
+  const resp = {
+    status: 'ok',
+  }
+  res.json(resp)
+  return
+}
+
+module.exports = {
+  registerHealthController,
+}

@@ -1,5 +1,5 @@
 /**
- * @returns {import("../../types").ErrorRequestHandler}
+ * @returns {import("express").ErrorRequestHandler}
  */
 function errorLogger({
     //@ts-ignore

@@ -1,22 +1,19 @@
 require('dotenv').config()
-//setup
-require('./setup/index')()
 
 const config = require('config')
 const http = require('http')
 
 const makeApp = require('./makeApp')
-const healthController = require('./controllers/healthController')
-const exampleController = require('./controllers/exampleController')
+const { registerHealthController } = require('./controllers/healthController')
+const { registerExampleController } = require('./controllers/exampleController')
 const logger = require('./setup/logger')
 
 async function main() {
-
-  const NODE_ENV = config.get('env.NODE_ENV');
+  const NODE_ENV = config.get('env.NODE_ENV')
   const PORT = config.get('application.port')
-  
+
   const app = makeApp({
-    controllers: [healthController, exampleController],
+    registerFns: [registerExampleController, registerHealthController],
   })
   const server = http.createServer(app)
 
@@ -38,7 +35,7 @@ async function main() {
   process.on('SIGINT', onClose)
   process.on('SIGTERM', onClose)
 
-  process.on("unhandledRejection", function (err) {
+  process.on('unhandledRejection', function (err) {
     console.error(err)
     process.exit(1)
   })

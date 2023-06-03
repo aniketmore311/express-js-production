@@ -1,5 +1,5 @@
 /**
- * @typedef {import('../../types').RequestHandler} RequestHandler
+ * @typedef {import('express').RequestHandler} RequestHandler
  */
 const expv = require('express-validator')
 const createHttpError = require('http-errors')

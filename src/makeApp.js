@@ -1,8 +1,8 @@
 /**
- * @typedef {import('./types').Controller} Controller
- * @typedef {import('./types').Application} Application
- * @typedef {import('./types').RequestHandler} RequestHandler
- * @typedef {import('./types').ErrorRequestHandler} ErrorRequestHandler
+ * @typedef {import('./types').ControllerRegisterFn} ControllerRegisterFn
+ * @typedef {import('express').Application} Application
+ * @typedef {import('express').RequestHandler} RequestHandler
+ * @typedef {import('express').ErrorRequestHandler} ErrorRequestHandler
  */
 const express = require('express')
 const morgan = require('morgan')
@@ -21,17 +21,17 @@ const NODE_ENV = config.get('env.NODE_ENV')
 const LOG_DIR = config.get('application.logDir')
 
 /**
- * @param {{controllers: Controller[]}} controllers - list of controller to register with the express application
+ * @param {{registerFns: ControllerRegisterFn[]}} registerFns - list of controller to register with the express application
  * @returns {Application}
  */
-function makeApp({ controllers }) {
+function makeApp({ registerFns }) {
   const app = express()
 
   app.use(cors())
   //@ts-ignore
   app.use(helmet())
   app.use(express.json())
-  app.use(express.urlencoded({ extended: true }))
+  app.use(express.urlencoded({ extended: false }))
 
   //log to console
   app.use(
@@ -52,16 +52,15 @@ function makeApp({ controllers }) {
     )
   }
 
-  controllers.forEach((controller) => {
-    controller.register(app)
+  registerFns.forEach((fn) => {
+    fn(app)
   })
 
   app.use(notFoundHandler())
-  app.use(errorLogger({logger}))
+  app.use(errorLogger({ logger }))
   app.use(errorHandler())
 
   return app
 }
-
 
 module.exports = makeApp

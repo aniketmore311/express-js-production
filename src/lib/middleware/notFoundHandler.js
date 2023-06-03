@@ -1,7 +1,7 @@
 const createHttpError = require("http-errors")
 
 /**
- * @returns {import("../../types").RequestHandler}
+ * @returns {import("express").RequestHandler}
  */
 function notFoundHandler() {
     return function (req, res, next) {
