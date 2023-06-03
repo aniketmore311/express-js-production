@@ -1,6 +1,6 @@
 # express-js-production
 
-## Production ready express-js starter
+## Production ready express-js API starter
 
 ## Requirements
 
@@ -16,6 +16,7 @@
 - `winston`and `morgan` for logging
 - `jest` and `supertest` for testing
 - `pm2` as a production runtime
+- `typescript` with jsdoc comments for static type checking your javascript code
 
 ## how to use this starter
 
@@ -23,6 +24,6 @@
 - run `cd <your project name>`
 - run `npm install`
 - run `cp .env.example .env` and fill values of env variables in `.env` file
-- run `npm start` to start a single process or
-- run `npm run prod` to run in pm2
 - run `npm run dev` to run in development or
+- run `npm start` to start a single process or
+- run `npm run prod` to run with pm2
