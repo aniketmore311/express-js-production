@@ -10,6 +10,7 @@ services:
     volumes:
       - "../logs:/usr/src/app/logs"
   caddy:
+    container_name: caddy
     image: caddy:2.6.4
     restart: unless-stopped
     ports:
@@ -17,7 +18,7 @@ services:
       - "443:443"
       - "443:443/udp"
     volumes:
-      - $PWD/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - "./caddy/Caddyfile:/etc/caddy/Caddyfile"
       - caddy_data:/data
       - caddy_config:/config
 volumes:
