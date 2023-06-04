@@ -4,8 +4,6 @@ services:
     build:
       context: ../
     env_file: "../.env"
-    ports:
-      - "8080:8080"
     restart: always
     volumes:
       - "../logs:/usr/src/app/logs"
