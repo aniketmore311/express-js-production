@@ -1,0 +1,84 @@
+openapi: '3.0.2'
+info:
+  title: ExpressJs production
+  description: production ready minimalist express starter
+  version: '1.0'
+servers:
+  - url: http://localhost:8080
+paths:
+  /:
+    get:
+      tags:
+        - "healthcheck"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthCheckResponse"
+  /health:
+    get:
+      tags:
+        - "healthcheck"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthCheckResponse"
+  /example/login:
+    post:
+      tags:
+        - "example"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequestDTO"
+      responses:
+        '200':
+          description: login successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginResponseDTO"
+        '400':
+          description: login failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+components:
+  schemas:
+    HealthCheckResponse:
+      type: object
+      properties:
+        status:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        statusCode:
+          type: number
+        message:
+          type: string
+    LoginRequestDTO:
+      type: object
+      properties:
+        email:
+          type: string
+        password: 
+          type: string
+      required:
+        - "email"
+        - "password"
+    LoginResponseDTO:
+      type: object
+      properties:
+        message:
+          type: string
+
+            
